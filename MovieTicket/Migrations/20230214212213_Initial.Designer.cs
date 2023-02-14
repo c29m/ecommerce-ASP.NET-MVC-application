@@ -12,7 +12,7 @@ using MovieTicket.Data;
 namespace MovieTicket.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230213092738_Initial")]
+    [Migration("20230214212213_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -123,9 +123,6 @@ namespace MovieTicket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
-                    b.Property<int>("CinemaIb")
-                        .HasColumnType("int");
-
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
@@ -158,7 +155,7 @@ namespace MovieTicket.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.HasIndex("CinemaIb");
+                    b.HasIndex("CinemaId");
 
                     b.HasIndex("DirectorId");
 
@@ -188,7 +185,7 @@ namespace MovieTicket.Migrations
                 {
                     b.HasOne("MovieTicket.Models.Cinema", "Cinema")
                         .WithMany("Movies")
-                        .HasForeignKey("CinemaIb")
+                        .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -70,15 +70,14 @@ namespace MovieTicket.Migrations
                     EndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Genre = table.Column<int>(type: "int", nullable: false),
                     CinemaId = table.Column<int>(type: "int", nullable: false),
-                    CinemaIb = table.Column<int>(type: "int", nullable: false),
                     DirectorId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.MovieId);
                     table.ForeignKey(
-                        name: "FK_Movies_Cinemas_CinemaIb",
-                        column: x => x.CinemaIb,
+                        name: "FK_Movies_Cinemas_CinemaId",
+                        column: x => x.CinemaId,
                         principalTable: "Cinemas",
                         principalColumn: "CinemaId",
                         onDelete: ReferentialAction.Cascade);
@@ -120,9 +119,9 @@ namespace MovieTicket.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Movies_CinemaIb",
+                name: "IX_Movies_CinemaId",
                 table: "Movies",
-                column: "CinemaIb");
+                column: "CinemaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Movies_DirectorId",
