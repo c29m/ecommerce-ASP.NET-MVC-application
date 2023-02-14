@@ -120,9 +120,6 @@ namespace MovieTicket.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
 
-                    b.Property<int>("CinemaIb")
-                        .HasColumnType("int");
-
                     b.Property<int>("CinemaId")
                         .HasColumnType("int");
 
@@ -155,7 +152,7 @@ namespace MovieTicket.Migrations
 
                     b.HasKey("MovieId");
 
-                    b.HasIndex("CinemaIb");
+                    b.HasIndex("CinemaId");
 
                     b.HasIndex("DirectorId");
 
@@ -185,7 +182,7 @@ namespace MovieTicket.Migrations
                 {
                     b.HasOne("MovieTicket.Models.Cinema", "Cinema")
                         .WithMany("Movies")
-                        .HasForeignKey("CinemaIb")
+                        .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
