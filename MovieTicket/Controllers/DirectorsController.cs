@@ -19,7 +19,7 @@ namespace MovieTicket.Controllers
         public async Task<IActionResult> Index()
         {
             var allSDirectors = await _appDbContext.Directors.ToListAsync();
-            return View();
+            return View(allSDirectors);
         }
     }
 }
