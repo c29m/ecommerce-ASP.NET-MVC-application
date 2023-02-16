@@ -19,8 +19,8 @@ namespace MovieTicket.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var allMovies = await _appDbContext.Movies.ToListAsync();
-            return View();
+            var allMovies = await _appDbContext.Movies.Include(n => n.Cinema).ToListAsync();
+            return View(allMovies);
         }
     }
 }

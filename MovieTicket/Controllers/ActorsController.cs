@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MovieTicket.Data;
 
+
 namespace MovieTicket.Controllers
 {
     public class ActorsController : Controller
@@ -19,7 +20,7 @@ namespace MovieTicket.Controllers
         public async Task<IActionResult> Index()
         {
             var allActors = await _appDbContext.Actors.ToListAsync();
-            return View();
+            return View(allActors);
         }
     }
 }
