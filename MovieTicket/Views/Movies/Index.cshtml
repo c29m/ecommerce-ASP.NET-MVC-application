@@ -5,21 +5,21 @@
     ViewData["Title"] = "List of Movies";
 }
 
-<div class="row" style="background-color: #161616">
+<div class="row" style="background-color: #18122B">
    @foreach(var item in Model)
    {
         <div class="col-sm-4 col-xs-6 border-primary mb-3" style="display: flex;
   justify-content: center;">
-            <div class="card mb-3 text-white align-self-center" style="max-width: 530px; background-color: #252525; border-radius: 15px" >
+            <div class="card mb-3 text-white align-self-center" style="max-width: 530px; background-color: #241c36; border-radius: 15px">
                 <div class="row g-0 ">
                     <div class="col-md-12">
-                        <div class="card-header text-white text-uppercase" style="background-color :#911bff; border-radius:15px 15px 0px 0px">
+                        <div class="card-header text-white text-uppercase" style="background-color:#4C3575; border-radius:15px 15px 0px 0px">
                             <p class="card-text">
                                 <h5 class="card-title">
                                     @item.Name
                                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                                     {
-                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.MovieId"><i class="bi bi-pencil-square"></i></a>
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i></a>
                                     }
                                 </h5>
                             </p>
@@ -39,7 +39,7 @@
                                 <b>Status: </b>
                                 @if (DateTime.Now >= item.StartDate && DateTime.Now <= item.EndDate)
                                 {
-                                    <span class="badge text-white" style="background-color: #02e602">AVAILABLE</span>
+                                    <span class="badge text-white" style="background-color: #03C988" >AVAILABLE</span>
                                 }
                                 else if (DateTime.Now > item.EndDate)
                                 {
@@ -56,13 +56,13 @@
                     <div class="col-md-12">
                         <div class="card-footer ">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.MovieId">
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Show Details
                                 </a>
-                                <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")" style="background-color: #02e602"
+                                <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")" style="background-color: #03C988"
                                asp-controller="Orders"
                                asp-action="AddItemToShoppingCart"
-                               asp-route-id="@item.MovieId">
+                               asp-route-id="@item.Id">
                                     <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Price.ToString("c"))
                                 </a>
                             </p>
