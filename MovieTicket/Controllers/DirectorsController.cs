@@ -54,7 +54,7 @@ namespace MovieTicket.Controllers
             return View(directorDetails);
         }
 
-        //Get: Actors/Edit
+        //GET: producers/edit/1
         public async Task<IActionResult> Edit(int id)
         {
             var directorDetails = await _directorsService.GetByIdAsync(id);
@@ -63,16 +63,17 @@ namespace MovieTicket.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("ActorId,FullName,ProfilePictureURL,Bio")] Director director)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ProfilePictureURL,FullName,Bio")] Director director)
         {
-            if (!ModelState.IsValid)
-            {
-                return View(director);
-            }
-            await _directorsService.UpdateAsync(id, director);
-            return RedirectToAction(nameof(Index));
-        }
+            if (!ModelState.IsValid) return View(director);
 
+            if (id ==director.Id)
+            {
+                await _directorsService.UpdateAsync(id, director);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(director);
+        }
 
         //Get: Actors/Delete/1
         public async Task<IActionResult> Delete(int id)
