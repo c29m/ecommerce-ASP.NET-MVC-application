@@ -1,14 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MovieTicket.Data.Base;
 using MovieTicket.Data.Enums;
 
 namespace MovieTicket.Models
 {
-    public class Movie
+    public class Movie : IEntityBase
     {
         [Key]
 
-        public int MovieId { get; set; }
+        public int Id { get; set; }
 
 
         public string Name { get; set; }
