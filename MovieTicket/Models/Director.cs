@@ -1,12 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MovieTicket.Data.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace MovieTicket.Models
 {
-    public class Director
+    public class Director : IEntityBase
     {
         [Key]
 
-        public int DirectorId { get; set; }
+        public int Id { get; set; }
 
         [Display(Name = "Profile Picture")]
         public string ProfilePictureURL { get; set; }
@@ -20,6 +21,6 @@ namespace MovieTicket.Models
 
         /*-----Relationships-----*/
 
-        public List<Movie> Movies { get; set; }
+        public List<Movie>? Movies { get; set; }
     }
 }
