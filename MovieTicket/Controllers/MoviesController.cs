@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MovieTicket.Data;
 using MovieTicket.Data.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Net.Http.Headers;
 
 namespace MovieTicket.Controllers
 {
@@ -32,10 +34,14 @@ namespace MovieTicket.Controllers
 
         //Get: Movie/Create
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            ViewData["Welcome"] = "Welcome to our store";
-            ViewBag.Description = "This is the store description";
+           var movieDropdownData = await _moviesService.GetNewMovieDropdownsValues();
+            ViewBag.Cinemas =  new SelectList(movieDropdownData.Cinemas, "Id", "Name" );
+
+            ViewBag.Directors = new SelectList(movieDropdownData.Directors, "Id", "FullName");
+
+            ViewBag.Actors = new SelectList(movieDropdownData.Actors, "Id", "FullName");
 
             return View();
         }
