@@ -16,7 +16,7 @@
                 <form asp-action="Create">  
                     <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
                     <div class="form-group text-center">
-                        <img id="LogoPreview" />
+                        <img id="LogoPreview" style="max-width: 300px"/>
                     </div>
                     <div class=" form-group text-white">
                         <label asp-for="Logo" class="control-label"></label>
@@ -51,15 +51,9 @@
 
 @section Scripts{
     <script>
-        
-        $(document).ready(function)(){
-            var output = document.getElementById('LogoPreview');
-            output.src = $("#Logo").val();
-        })
-
-        $("#Logo").om("change", function (){
-            var output = document.getElementById('LogoPreview');
+        $("#Logo").on("change", function () {
+            var output = document.getElementById("LogoPreview");
             output.src = $(this).val();
-        });
+        })
     </script>
 }
