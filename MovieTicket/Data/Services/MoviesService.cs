@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MovieTicket.Data.Base;
+using MovieTicket.Data.ViewModels;
 using MovieTicket.Models;
 
 namespace MovieTicket.Data.Services
@@ -8,7 +9,7 @@ namespace MovieTicket.Data.Services
     {
         private readonly AppDbContext _context;
 
-        public MoviesService(AppDbContext context): base(context)
+        public MoviesService(AppDbContext context) : base(context)
         {
             _context = context;
         }
@@ -25,5 +26,16 @@ namespace MovieTicket.Data.Services
             return movieDetails;
         }
 
+        public async Task<NewMovieDropdownVM> GetNewMovieDropdownsValues()
+        {
+            var response = new NewMovieDropdownVM()
+            {
+                Actors = await _context.Actors.OrderBy(a => a.FullName).ToListAsync(),
+                Directors = await _context.Directors.OrderBy(d => d.FullName).ToListAsync(),
+                Cinemas = await _context.Cinemas.OrderBy(c => c.Name).ToListAsync()
+
+            };
+            return response;
+        }
     }
 }
