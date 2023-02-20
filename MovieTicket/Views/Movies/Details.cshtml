@@ -6,7 +6,7 @@
 
 <div class="row" >
     <div class="col-md-8 offset-2">
-        <div class="card mb-12">
+        <div class="card mb-12" style="border-color: #241c36">
             <div class="row g-0" >
                 <div class="col-md-12" >
                     <div class="card-header text-white" style="background-color:#4C3575;">
@@ -17,10 +17,10 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="background-color:  #241c36">
                     <img src="@Model.ImageURL" width="100%" alt="@Model.Name">
                 </div>
-                <div class="col-md-8" style="background-color:  #241c36">
+                <div class="col-md-8" style="background-color:  #241c36;">
                     <div class="card-body text-white" style="background-color:  #241c36">
                         <p class="card-text">@Model.Description</p>
                         <p class="card-text">
@@ -57,6 +57,7 @@
                             <b>Actors: </b>
                             <hr />
                             <div class="row">
+                                
                                 @foreach (var actor in Model.MovieActors)
                                 {
                                     <div class="column text-center">
@@ -65,6 +66,7 @@
                                         <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.ActorId">@actor.Actor.FullName</a>
                                     </div>
                                 }
+                              
                             </div>
                         </p>
 
