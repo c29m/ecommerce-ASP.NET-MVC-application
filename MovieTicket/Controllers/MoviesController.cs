@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using MovieTicket.Data;
+using MovieTicket.Models;
 using MovieTicket.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Net.Http.Headers;
@@ -46,6 +47,25 @@ namespace MovieTicket.Controllers
             return View();
         }
 
-        
+        [HttpPost]
+        public async Task<IActionResult> Create(NewMovieVM movie)
+        {
+            if (!ModelState.IsValid)
+            {
+                var movieDropdownData = await _moviesService.GetNewMovieDropdownsValues();
+
+                ViewBag.Cinemas = new SelectList(movieDropdownData.Cinemas, "Id", "Name");
+
+                ViewBag.Directors = new SelectList(movieDropdownData.Directors, "Id", "FullName");
+
+                ViewBag.Actors = new SelectList(movieDropdownData.Actors, "Id", "FullName");
+
+                return View(movie);
+
+            }
+            await _moviesService.AddNewMovieAsync(movie);
+            return RedirectToAction(nameof(Index));
+        }
+     
     }
 }
