@@ -37,5 +37,10 @@ namespace MovieTicket.Data
 
         public DbSet<ActorMovie> ActorsMovies { get; set; }
 
+        //Order related
+
+       public DbSet<Order> Orders { get; set; }
+
+       public DbSet<OrderItem> OrderItems { get; set; }
     }
 }
