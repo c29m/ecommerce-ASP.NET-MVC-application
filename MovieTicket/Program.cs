@@ -1,6 +1,7 @@
 using MovieTicket.Data;
 using Microsoft.EntityFrameworkCore;
 using MovieTicket.Data.Services;
+using MovieTicket.Data.Cart;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,7 @@ builder.Services.AddScoped<IActorsService, ActorsService>();
 builder.Services.AddScoped<IDirectorsService, DirectorsService>();
 builder.Services.AddScoped<ICinemasService, CinemasService>();
 builder.Services.AddScoped<IMoviesService, MoviesService>();
+builder.Services.AddScoped<ShoppingCart>();
 
 var app = builder.Build();
 
