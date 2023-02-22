@@ -33,9 +33,9 @@ namespace MovieTicket.Controllers
 
             if (!string.IsNullOrEmpty(searchString))
             {
-                var filteraResult = allMovies.Where(n => n.Name.Contains(searchString)
+                var filteraResult = allMovies.Where(n => n.Name.ToLower().Contains(searchString.ToLower())
                                                     ||
-                                                    n.Description.Contains(searchString)).ToList();
+                                                    n.Description.ToLower().Contains(searchString.ToLower())).ToList();
 
                 return View(nameof(Index), filteraResult); 
             }
