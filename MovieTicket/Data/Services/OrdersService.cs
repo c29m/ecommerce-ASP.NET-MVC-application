@@ -1,5 +1,4 @@
-﻿using AspNetCore;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MovieTicket.Models;
 
 namespace MovieTicket.Data.Services
