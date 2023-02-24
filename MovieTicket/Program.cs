@@ -2,6 +2,10 @@ using MovieTicket.Data;
 using Microsoft.EntityFrameworkCore;
 using MovieTicket.Data.Services;
 using MovieTicket.Data.Cart;
+using MovieTicket.Models;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using MovieTicket.Data.Static;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -20,10 +24,13 @@ builder.Services.AddScoped<IOrdersService, OrdersService>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 builder.Services.AddScoped(sc => ShoppingCart.GetShoppingCart(sc));
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddSession();
-
-
+builder.Services.AddAuthentication(options => { 
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
 
 var app = builder.Build();
 
@@ -40,8 +47,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 app.UseSession();
-app.UseAuthorization();
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
