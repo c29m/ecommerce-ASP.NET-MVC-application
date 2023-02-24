@@ -36,9 +36,7 @@
                                     <a class="dropdown-item" asp-controller="Actors" asp-action="Index"><i class="bi bi-person-square"></i> Actors</a>
                                 </div>
                             </li>
-                        
-
-                    </ul>
+                        </ul>
 
                     <form class="form-inline" asp-controller="Movies" asp-action="Filter" >
                         <ul class="navbar-nav">
@@ -52,7 +50,19 @@
                         @await Component.InvokeAsync("ShoppingCartSummary")
                     </ul>
 
-                    
+                    <div class="dropdown text-white" style="margin-left: 5px">
+                        <button class="btn btn-outline-success dropdown-toggle" type = "button" id="profile-btn" data-bs-toggle = "dropdown" area-expanded = "false">
+                            <i class="bi bi-person-badge"></i> Hello User
+
+                        </button>
+                        <ul class="dropdown-menu" area-labelledby="profile-btn">
+                            <li>
+                                <a class="dropdown-item" asp-controller="Orders" asp-action="Index" >
+                                    <i class = "bi bg-list"/>Orders
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
