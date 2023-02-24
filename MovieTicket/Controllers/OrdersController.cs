@@ -70,5 +70,13 @@ namespace MovieTicket.Controllers
             return View("OrderCompleted"); 
         }
 
+        public async Task<IActionResult> Index(){
+
+            var userId = "";
+            var orders = await _ordersService.GetAllOrdersByUserIdAsync(userId);
+
+            return View(orders);
+        }
+
     }
 }
