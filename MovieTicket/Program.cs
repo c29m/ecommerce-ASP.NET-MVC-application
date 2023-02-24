@@ -2,6 +2,7 @@ using MovieTicket.Data;
 using Microsoft.EntityFrameworkCore;
 using MovieTicket.Data.Services;
 using MovieTicket.Data.Cart;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +39,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
+app.UseSession();
 app.UseAuthorization();
 
 
