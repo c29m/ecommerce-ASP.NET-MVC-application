@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using MovieTicket.Data;
 using MovieTicket.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -23,9 +24,10 @@ namespace MovieTicket.Controllers
             _context = context; 
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Users()
         {
-            return View();
+            var user = await _context.Users.ToListAsync();
+            return View(user);
         }
 
         public IActionResult Login() => View(new LoginVM());
