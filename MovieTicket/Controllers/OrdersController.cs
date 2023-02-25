@@ -2,6 +2,7 @@
 using MovieTicket.Data.Cart;
 using MovieTicket.Data.Services;
 using MovieTicket.Data.ViewModels;
+using System.Security.Claims;
 
 namespace MovieTicket.Controllers
 {
@@ -61,9 +62,9 @@ namespace MovieTicket.Controllers
         {
             var items = _shoppingCart.GetShoppingCartItems();
 
-            string userId = "";
-            string userEmailAddress = "";
-             
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userEmailAddress = User.FindFirstValue(ClaimTypes.Email);
+
             await _ordersService.StoreOrdedrAsync(items, userId, userEmailAddress);
             await _shoppingCart.ClearShoppingCartAsync();
 
@@ -72,8 +73,10 @@ namespace MovieTicket.Controllers
 
         public async Task<IActionResult> Index(){
 
-            var userId = "";
-            var orders = await _ordersService.GetAllOrdersByUserIdAsync(userId);
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string userRole = User.FindFirstValue(ClaimTypes.Role);
+
+            var orders = await _ordersService.GetAllOrdersByUserIdAndRoleAsync(userId, userRole);
 
             return View(orders);
         }
