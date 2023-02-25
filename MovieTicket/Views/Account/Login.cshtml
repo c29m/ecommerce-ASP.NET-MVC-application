@@ -11,6 +11,11 @@
             <h4>Log into your account</h4>
         </p>
         <div class = "row ">
+            @if(TempData["Error"] != null){
+                <div class="col-md-12 alert alert-danger text-white" style="background-color:#4C3575;">
+                    <sopan><b>Sorry</b> - @TempData["Error"]</sopan>
+                </div>
+            }
             <div class = "col-md-8 offset-2">
                 <form asp-action="Login">
                     <div asp-validation-summary="ModelOnly" class = "text-white text-danger"></div>
