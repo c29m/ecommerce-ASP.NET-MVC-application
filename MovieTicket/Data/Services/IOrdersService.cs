@@ -6,7 +6,7 @@ namespace MovieTicket.Data.Services
     {
         Task StoreOrdedrAsync(List<ShoppingCartItem> items, string userId, string userEmailAddress);
 
-        Task<List<Order>> GetAllOrdersByUserIdAsync(string userId);
+        Task<List<Order>> GetAllOrdersByUserIdAndRoleAsync(string userId, string userRole);
         
     }
 }
