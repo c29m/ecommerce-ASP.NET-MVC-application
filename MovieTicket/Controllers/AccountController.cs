@@ -3,7 +3,10 @@ using MovieTicket.Data;
 using MovieTicket.Models;
 using Microsoft.AspNetCore.Mvc;
 using MovieTicket.Data.ViewModels;
-using System.Diagnostics;
+using MovieTicket.Data.Static;
+
+
+
 
 namespace MovieTicket.Controllers
 {
@@ -26,6 +29,7 @@ namespace MovieTicket.Controllers
         }
 
         public IActionResult Login() => View(new LoginVM());
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM loginVM)
@@ -53,8 +57,37 @@ namespace MovieTicket.Controllers
 
             TempData["Error"] = "Wrong credentials. Please, try again!";
             return View(loginVM);
-         } 
+         }
 
+
+        public IActionResult Register() => View(new RegisterVM());
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterVM registerVM)
+        {
+            if (!ModelState.IsValid) return View(registerVM);
+
+            var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
+            
+            if( user != null )
+            {
+                TempData["Error"] = "This email address is already in use";
+                return View(registerVM);
+            }
+
+            var newUser = new ApplicationUser()
+            {
+                FullName = registerVM.FullName,
+                Email = registerVM.EmailAddress,
+                UserName = registerVM.EmailAddress
+            };
+
+            var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
+
+            if (newUserResponse.Succeeded)
+                await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+            return View("RegisterCompleted");
+        }
 
     }
 }
