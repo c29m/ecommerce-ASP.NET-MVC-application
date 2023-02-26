@@ -1,16 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc;
-using MovieTicket.Data;
+﻿using Microsoft.AspNetCore.Mvc;
 using MovieTicket.Models;
 using MovieTicket.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Authorization;
-using System.Net.Http.Headers;
-using Azure;
+using MovieTicket.Data.Static;
 
 namespace MovieTicket.Controllers
 {
-    [Authorize] 
+    [Authorize(Roles = UserRoles.Admin)]
     public class MoviesController : Controller
     {
 
@@ -47,6 +44,7 @@ namespace MovieTicket.Controllers
         }
 
         //Get: Movies/Details
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int id)
         {
             var movieDetails = await _moviesService.GetMovieByIdAsync(id);

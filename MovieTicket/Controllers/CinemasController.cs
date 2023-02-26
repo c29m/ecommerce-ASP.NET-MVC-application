@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.EntityFrameworkCore;
-using MovieTicket.Data;
 using MovieTicket.Data.Services;
 using MovieTicket.Models;
+using MovieTicket.Data.Static;
 
 namespace MovieTicket.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class CinemasController : Controller
     {
         private readonly ICinemasService _cinemasService;
