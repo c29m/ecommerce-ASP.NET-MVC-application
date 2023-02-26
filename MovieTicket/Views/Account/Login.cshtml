@@ -13,9 +13,10 @@
         <div class = "row ">
             @if(TempData["Error"] != null){
                 <div class="col-md-12 alert alert-danger text-white" style="background-color:#4C3575;">
-                    <sopan><b>Sorry</b> - @TempData["Error"]</sopan>
+                    <span><b>Sorry</b> - @TempData["Error"]</span>
                 </div>
             }
+            <div class="row">
             <div class = "col-md-8 offset-2">
                 <form asp-action="Login">
                     <div asp-validation-summary="ModelOnly" class = "text-white text-danger"></div>
@@ -36,7 +37,7 @@
                     </div>
                 </form>
             </div>
+            </div>
         </div>
     </div>
-
 </div>
