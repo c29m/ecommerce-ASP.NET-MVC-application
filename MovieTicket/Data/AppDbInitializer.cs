@@ -23,7 +23,7 @@ namespace MovieTicket.Data
 
                 //Users
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-                string adminUserEmail = "admin@etickets.com";
+                string adminUserEmail = "admin@movieticket.com";
 
                 var adminUser = await userManager.FindByEmailAsync(adminUserEmail);
                 if (adminUser == null)
@@ -40,7 +40,7 @@ namespace MovieTicket.Data
                 }
 
 
-                string appUserEmail = "user@etickets.com";
+                string appUserEmail = "user@movieticket.com";
 
                 var appUser = await userManager.FindByEmailAsync(appUserEmail);
                 if (appUser == null)
@@ -192,21 +192,21 @@ namespace MovieTicket.Data
                     {
                         new Movie()
                         {
-                            Name = "Life",
-                            Description = "This is the Life movie description",
-                            Price = 39.50,
-                            ImageURL = "http://dotnethow.net/images/movies/movie-3.jpeg",
+                            Name = "The Godfather",
+                            Description = "The Godfather is the story of the Corleones, a fictional Mafia family operating in New York City. The novel focuses on the time directly following World War II, from 1945 to 1955.",
+                            Price = 300.50,
+                            ImageURL = "https://upload.wikimedia.org/wikipedia/en/1/1c/Godfather_ver1.jpg",
                             StartDate = DateTime.Now.AddDays(-10),
                             EndDate = DateTime.Now.AddDays(10),
                             CinemaId = 3,
                             DirectorId = 3,
-                            Genre = Genre.Documentary
+                            Genre = Genre.Crime
                         },
                         new Movie()
                         {
                             Name = "The Shawshank Redemption",
-                            Description = "This is the Shawshank Redemption description",
-                            Price = 29.50,
+                            Description = "It tells the story of banker Andy Dufresne (Tim Robbins), who is sentenced to life in Shawshank State Penitentiary for the murders of his wife and her lover, despite his claims of innocence.",
+                            Price = 300.50,
                             ImageURL = "http://dotnethow.net/images/movies/movie-1.jpeg",
                             StartDate = DateTime.Now,
                             EndDate = DateTime.Now.AddDays(3),
@@ -216,10 +216,10 @@ namespace MovieTicket.Data
                         },
                         new Movie()
                         {
-                            Name = "Ghost",
-                            Description = "This is the Ghost movie description",
-                            Price = 39.50,
-                            ImageURL = "http://dotnethow.net/images/movies/movie-4.jpeg",
+                            Name = "Hannibal",
+                            Description = "Hannibal Lecter returns to America and attempts to make contact with disgraced Agent Starling and survive a vengeful victim's plan.",
+                            Price = 300.50,
+                            ImageURL = "https://upload.wikimedia.org/wikipedia/ru/thumb/9/9b/Hannibal_movie_poster.jpg/240px-Hannibal_movie_poster.jpg",
                             StartDate = DateTime.Now,
                             EndDate = DateTime.Now.AddDays(7),
                             CinemaId = 4,
@@ -228,36 +228,36 @@ namespace MovieTicket.Data
                         },
                         new Movie()
                         {
-                            Name = "Race",
-                            Description = "This is the Race movie description",
-                            Price = 39.50,
-                            ImageURL = "http://dotnethow.net/images/movies/movie-6.jpeg",
+                            Name = "Requiem for a Dream",
+                            Description = "Film depicts four characters affected by drug addiction and how it alters their physical and emotional states.",
+                            Price = 300.50,
+                            ImageURL = "https://upload.wikimedia.org/wikipedia/en/9/92/Requiem_for_a_dream.jpg",
                             StartDate = DateTime.Now.AddDays(-10),
                             EndDate = DateTime.Now.AddDays(-5),
                             CinemaId = 1,
                             DirectorId = 2,
-                            Genre = Genre.Documentary
+                            Genre = Genre.Drama
 
                         },
                         new Movie()
                         {
-                            Name = "Scoob",
-                            Description = "This is the Scoob movie description",
-                            Price = 39.50,
-                            ImageURL = "http://dotnethow.net/images/movies/movie-7.jpeg",
+                            Name = "Paprika",
+                            Description = "Paprika (パプリカPaprika )  is a Japanese animated science fiction and psychological thriller film based on the 1993 novel Paprika by Yasutaka Tsutsui .",
+                            Price = 300.50,
+                            ImageURL = "https://m.media-amazon.com/images/M/MV5BNDliMTMxOWEtODM3Yi00N2QwLTg4YTAtNTE5YzBlNTA2NjhlXkEyXkFqcGdeQXVyNjE5MjUyOTM@._V1_.jpg",
                             StartDate = DateTime.Now.AddDays(-10),
                             EndDate = DateTime.Now.AddDays(-2),
                             CinemaId = 1,
                             DirectorId = 3,
-                            Genre = Genre.Crime
+                            Genre = Genre.Action
 
                         },
                         new Movie()
                         {
-                            Name = "Cold Soles",
-                            Description = "This is the Cold Soles movie description",
-                            Price = 39.50,
-                            ImageURL = "http://dotnethow.net/images/movies/movie-8.jpeg",
+                            Name = "The Devil's Advocate ",
+                            Description = "Young gifted Florida lawyer invited to New York City to work for a major firm and slowly begins to realize the owner of the firm  is not what he appears to be, and is in fact the Devil.",
+                            Price = 300.50,
+                            ImageURL = "https://upload.wikimedia.org/wikipedia/en/thumb/3/3f/Devilsadvocate.jpg/220px-Devilsadvocate.jpg",
                             StartDate = DateTime.Now.AddDays(3),
                             EndDate = DateTime.Now.AddDays(20),
                             CinemaId = 1,
