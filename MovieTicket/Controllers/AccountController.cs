@@ -63,15 +63,14 @@ namespace MovieTicket.Controllers
 
 
         public IActionResult Register() => View(new RegisterVM());
-
         [HttpPost]
         public async Task<IActionResult> Register(RegisterVM registerVM)
         {
             if (!ModelState.IsValid) return View(registerVM);
 
             var user = await _userManager.FindByEmailAsync(registerVM.EmailAddress);
-            
-            if( user != null )
+
+            if (user != null)
             {
                 TempData["Error"] = "This email address is already in use";
                 return View(registerVM);
@@ -87,9 +86,18 @@ namespace MovieTicket.Controllers
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
+            {
                 await _userManager.AddToRoleAsync(newUser, UserRoles.User);
-            return View("RegisterCompleted");
+                return View("RegisterCompleted");
+            }
+            else
+            {
+                // Handle errors if user creation failed
+                TempData["Error"] = "Failed to create user (Password requires non alphanumeric, password requires upper)";
+                return View(registerVM);
+            }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> Logout()
