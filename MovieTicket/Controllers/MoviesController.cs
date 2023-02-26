@@ -4,11 +4,13 @@ using MovieTicket.Data;
 using MovieTicket.Models;
 using MovieTicket.Data.Services;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
 using System.Net.Http.Headers;
 using Azure;
 
 namespace MovieTicket.Controllers
 {
+    [Authorize] 
     public class MoviesController : Controller
     {
 
@@ -21,12 +23,14 @@ namespace MovieTicket.Controllers
 
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Index()
         {
             var allMovies = await _moviesService.GetAllAsync(n => n.Cinema);
             return View(allMovies);
         }
 
+        [AllowAnonymous]
         public async Task<IActionResult> Filter(string searchString)
         {
             var allMovies = await _moviesService.GetAllAsync(n => n.Cinema);
